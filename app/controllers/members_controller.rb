@@ -25,7 +25,7 @@ class MembersController < ApplicationController
       if @member.nil?
         render json: {'result': false, 'logout': true}
       else
-        render json: {'result': true, 'point':{'code':{'value': @member.member_id, 'type': 'nw-7'}, 'name': @member.name, 'point_num': @member.point}}
+        render json: {'result': true, 'point':{'code':{'value': @member.member_id, 'type': 'nw-7'}, 'member_id': @member.member_id, 'name': @member.name, 'point_num': @member.point, 'rank': @member.rank}}
       end
     else
       render json: {'result': false, 'logout': true}
