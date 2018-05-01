@@ -1,5 +1,5 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: [:show, :update, :destroy]
+  before_action :set_member, only: [:update, :destroy]
 
   # POST /login
   def login
@@ -20,7 +20,16 @@ class MembersController < ApplicationController
 
   # GET /members/1
   def show
-    render json: @member
+    if params[:token].eql?('ACCESSTOKEN')
+      @member = Member.find_by(member_id:params[:member_id])
+      if @member.nil?
+        render json: {'result': false, 'logout': true}
+      else
+        render json: {'result': true, 'point':{'code':{'value': @member.member_id, 'type': 'nw-7'}, 'name': @member.name, 'point_num': @member.point}}
+      end
+    else
+      render json: {'result': false, 'logout': true}
+    end
   end
 
   # POST /members
