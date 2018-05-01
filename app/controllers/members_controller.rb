@@ -5,7 +5,7 @@ class MembersController < ApplicationController
   def login
     @member = Member.find_by(email:params[:email], password:params[:password])
     if @member.nil?
-      render plain: 'データがありません'
+      render json: => {'result': false, 'message': 'メールアドレスまたはパスワードが間違っていますよ'}
     else
       render json: @member
     end
