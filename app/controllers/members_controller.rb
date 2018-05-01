@@ -7,7 +7,7 @@ class MembersController < ApplicationController
     if @member.nil?
       render json: {'result': false, 'message': 'メールアドレスまたはパスワードが間違っていますよ'}
     else
-      render json: @member
+      render json: {'result': true, 'member':{'member_id': @member.member_id, 'token': 'ACCESSTOKEN'}, 'member_id': @member.member_id}
     end
   end
 
