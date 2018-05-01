@@ -3,7 +3,7 @@ class MembersController < ApplicationController
 
   # POST /login
   def login
-    render text: 'ABC'
+    render plain: 'ABC'
   end
 
   # GET /members
