@@ -4,7 +4,11 @@ class MembersController < ApplicationController
   # POST /login
   def login
     @member = Member.find_by(email:params[:email], password:params[:password])
-    render json: @member
+    if @member.nil?
+      render plain: 'データがありません'
+    else
+      render json: @member
+    end
   end
 
   # GET /members
