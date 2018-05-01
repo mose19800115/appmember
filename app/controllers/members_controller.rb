@@ -1,8 +1,9 @@
 class MembersController < ApplicationController
-  before_action :set_member, only: [:show, :update, :destroy, :login]
+  before_action :set_member, only: [:show, :update, :destroy]
 
   # POST /login
   def login
+    @member = Member.find_by(email:params[:email], password:params[:password])
     render json: @member
   end
 
